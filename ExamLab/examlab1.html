@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Examlab</title>
 </head>
-<body>
-
-    <table align="center" border="1" width="500px" height="300px">
+<body bgcolor="#ADD8E6">
+    <br><br>
+    <table align="center" border="0" width="500px" height="300px" bgcolor="#FFFFFF">
         <tr>
             <td>
                 <h3>สมัคร</h3>
@@ -15,16 +15,11 @@
                 <p>_____________________________________________________________</p>
 
                 <form action="">
+                    <input type="text" placeholder="ชื่อ" align="right">
+                    <input type="text" placeholder="นามสกุล"><br><br>
 
-                    <label for="">ชื่อ</label>
-                    <input type="text">
-                    <label for="">นามสกุล</label>
-                    <input type="text"><br>
-
-                    <label for="">อีเมล</label>
-                    <input type="email"><br>
-                    <label for="">รหัสผ่านใหม่</label>
-                    <input type="password"><br>
+                    <input type="email" placeholder="อีเมล" size="60"><br><br>
+                    <input type="password" placeholder="รหัสผ่าน" size="60"><br><br>
 
                     <label for="">วันเกิด</label><br>
                     <section>
@@ -39,18 +34,35 @@
                         <select name="year" id="">
                             <option value="">2548</option>
                         </select>
-                    </section>
+                    </section><br><br>
 
-                    <label for="">เพศ</label><br>
-                    <input type="radio" name="gender" value="female">หญิง
-                    <input type="radio" name="gender" value="male">ชาย
+                    <label for="">เพศ</label><br><br>
+                    <table border="1" width="400px" cellspacing="0" cellpadding="5"> 
+                        <tr>
+                            <td align="left">
 
-                    <p >_____________________________________________________________</p>
-                    <p >เมื่อคลิกสัคร แสดงว่าคุณยอมรับข้อกำหนด นโยบายข้อมูล และ นโยบาย
+                                หญิง <input type="radio" name="gender" value="female" placeholder="หญิง">
+                                
+                            </td>
+
+                            <td align="left">
+                                ชาย <input type="radio" name="gender" value="male" placeholder="ชาย">
+                            </td>
+                            
+                        </tr>  
+                         
+                    </table>
+
+
+                    <p>เมื่อคลิกสมัคร แสดงว่าคุณยอมรับข้อกำหนด นโยบายข้อมูล และ นโยบาย
                         คุกกี้ของเรา คุณอาจได้รับการแจ้งเตือนทาง  จากเรา และสามารถเลือก
                         ไม่รับได้ในภายหลัง</p>
 
-                    <button type="submit">สมัคร</button>
+                    <tr>
+                        <td align="center" bgcolor="green" colspan="2">
+                            <input type="button" value="สมัคร">
+                        </td>
+                    </tr>
                 </form>
             </td>
         </tr>
