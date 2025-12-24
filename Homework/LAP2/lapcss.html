@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectors</title>
+    <style>
+        body {
+            font-family: serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        p {
+            color: green;
+        }
+
+        .highlight {
+            background-color: yellow;
+            padding: 5px;
+        }
+
+        #header {
+            background: blue;
+            color: white;
+            padding: 10px;
+        }
+
+        p:hover {
+            color: red;
+            background-color: #ffe5e5;
+            cursor: pointer;
+        }
+
+
+        input[type="text"] {
+            border: 2px solid blue;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        input[type="text"]:focus {
+            border-color: rgb(255, 0, 128);
+            outline: none;
+            background-color: #fff0fa;
+        }
+
+        .parent {
+            font-size: 16px;
+            border: 2px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .child-title {
+            font-size: 2em;
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .child-text {
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+
+        .fixed-text {
+            font-size: 18px;
+            color: #2980b9;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-shadow: 5px 5px 5px #FF0000;
+        }
+
+        p {
+            width: 300px;
+            border: 1px solid #CCC;
+            padding: 10px;
+            word-wrap: break-word;
+        }
+
+        .box-image {
+            width: 300px;
+            height: 300px;
+            background-image: url('../RMUTL.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 2px solid #333;
+        }
+
+        .box-short {
+            width: 300px;
+            height: 300px;
+            background: url('../RMUTL.png') no-repeat center / cover;
+            border: 2px solid black;
+        }
+
+        .box-color {
+            width: 300px;
+            height: 120px;
+            background-color:lightblue;
+            padding: 20px;
+        }
+
+        .bg-yellow {
+            background-color: yellow;
+        }
+
+        .bg-hex {
+            background-color: #FFFF00;
+        }
+
+        .align-left {
+            text-align: left;
+        }
+
+        .align-center {
+            text-align: center;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .centerline {
+            text-decoration: line-through;
+        }
+
+        .line-height-normal {
+            line-height: 1,5;
+        }
+
+        .line-height-normal {
+            line-height: 24px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <h1>ตัวอย่าง CSS Selectors</h1>
+
+    <p>
+        ข้อความนี้ถูกจัดสีด้วย Element Selector (p { clolor: green; })
+    </p>
+
+    <p class="highlight">
+        ข้อความนี้ถูกจัดสไตล์ด้วย Class Selector (.highlight)
+    </p>
+
+    <div id="header">
+        นี้คือพื้นที่ Header (ID Selector)
+    </div>
+
+
+    <h2>Pseudo-Class :hover</h2>
+    <p>นำเมาส์มาวางบนข้อความนี้เพื่อดูเอฟเฟกต์</p>
+
+    <h2>Attribute Selector {type="text"}</h2>
+    <input type="text" placeholder="พิมพ์ข้อความที่นี้">
+
+    <p class="align-left">ข้อความนี้จัดชิดซ้าน</p>
+    <p class="align-center">ข้อความนี้จัดกึ่งกลาง</p>
+    <p class="align-right">ข้อความนี้จัดชิดขวา</p>
+
+    <p class="underline">ข้อความนี้ขีดเส้นใต้</p>
+    <p class="centerline">ข้อความนี้ขีดฆ่า</p>
+    <p>ข้อความนี้ไม่มีการตกแต่ง</p>
+
+    <p>ระยะบรรทัด 1.5 เท่า</p>
+    <p>ระยะบรรทัด 24px</p>
+
+</body>
+
+</html>
