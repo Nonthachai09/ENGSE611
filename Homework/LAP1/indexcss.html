@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAP1</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+
+        h1, h2 {
+            color: #003366;
+        }
+
+        header {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            color: white;
+        }
+
+        header img {
+            border-radius: 50%;
+        }
+
+        nav {
+            background-color: #222;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: yellow;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .highlight {
+            color: red;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th {
+            background-color: #003366;
+            color: white;
+        }
+
+        table td, table th {
+            text-align: center;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0055aa;
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        footer a {
+            color: yellow;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="../img1.jpg" alt="profile" width="200" height="200">
+        <h1>ชื่อ : นาย นนทชัย ไทยตัน</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">เกี่ยวกับ</a></li>
+            <li><a href="#skills">ทักษะ</a></li>
+            <li><a href="#contact">ติดต่อ</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section id="about">
+            <h2>เกี่ยวกับฉัน</h2>
+            <p class="highlight">เป็นคนที่มีนิสัย เรียบง่าย ไม่ค่อยคุยกับคนที่ไม่สนิท</p>
+        </section>
+
+        <section id="skills">
+            <h2>ทักษะของฉัน</h2>
+            <p>นี่คือสิ่งที่ผมทำได้</p>
+
+            <ul>
+                <li>เขียนโปรแกรมเบื้องต้น</li>
+                <li>ตัดต่อวิดีโอ</li>
+                <li>เล่นเกม</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>ข้อมูลส่วนตัว + งานอดิเรก</h2>
+            <table border="1" cellpadding="6">
+                <tr>
+                    <th colspan="2">ข้อมูลของฉัน</th>
+                </tr>
+                <tr>
+                    <td rowspan="2">ชื่อ</td>
+                    <td>นาย นนทชัย ไทยตัน</td>
+                </tr>
+                <tr>
+                    <td>นนท์</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">งานอดิเรก</td>
+                    <td>เล่นเกม</td>
+                </tr>
+                <tr>
+                    <td>เขียนโค้ด</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="contact">
+            <h2>ติดต่อฉัน</h2>
+            <form>
+                <label>ชื่อ : </label>
+                <input type="text" placeholder="กรอกชื่อ"><br><br>
+
+                <label>อีเมล : </label>
+                <input type="email" placeholder="กรอกอีเมล"><br><br>
+
+                <label>ข้อความ : </label><br>
+                <textarea placeholder="กรอกข้อความ"></textarea><br><br>
+
+                <button type="submit">ส่งข้อความ</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Social Media</p>
+        <a href="#">Facebook</a> |
+        <a href="#">Instagram</a> |
+        <a href="#">Github</a>
+    </footer>
+
+</body>
+
+</html>
