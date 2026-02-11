@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Condition & Loop Demo</title>
+</head>
+
+<body>
+
+    <div id="outputBox">ผลลัพธ์จะปรากฏที่นี่..</div>
+    <button onclick="runDemo()">Run Code</button>
+
+    <script>
+        function runDemo() {
+            console.clear();
+
+            const output = [];
+
+            let score = 72;
+
+            if (score >= 50) {
+                output.push("ผลสอบ: ผ่าน");
+                console.log("ผลสอบ: ผ่าน");
+            } else {
+                output.push("ผลสอบ: ไม่ผ่าน");
+                console.log("ผลสอบ: ไม่ผ่าน");
+            }
+
+            for (let i = 0; i < 5; i++) {
+                output.push("รอบที่: " + i);
+                console.log("รอบที่:", i);
+            }
+
+            document.getElementById("outputBox").textContent = output.join("\n");
+        }
+    </script>
+
+</body>
+
+</html>

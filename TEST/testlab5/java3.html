@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo JavaScript let / const</title>
+    <style>
+        body {
+            font-family: monospace;
+        }
+
+        #outputBox {
+            white-space: pre;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button onclick="runDemo()">Run Code</button>
+
+    <div id="outputBox"></div>
+
+    <script>
+        function runDemo() {
+
+            console.clear();
+
+            const output = [];
+
+            let studentName = 'สมชาย';
+            let age = 20;
+            let isStudent = true;
+            const universityName = 'มหาวิทยาลัยเทคโนโลยี';
+
+            output.push("ชื่อ: " + studentName);
+            console.log("ชื่อ:", studentName);
+
+            output.push("อายุ: " + age);
+            console.log("อายุ:", age);
+
+            output.push("เป็นนักศึกษาหรือไม่: " + isStudent);
+            console.log("เป็นนักศึกษาหรือไม่:", isStudent);
+
+            output.push("มหาวิทยาลัย: " + universityName);
+            console.log("มหาวิทยาลัย:", universityName);
+
+            age = 21;
+            output.push("อายุใหม่: " + age);
+            console.log("อายุใหม่:", age);
+
+            try {
+                universityName = 'มหาวิทยาลัยใหม่';
+            } catch (e) {
+                output.push("Error: " + e.message);
+                console.error(e.message);
+            }
+
+            document.getElementById("outputBox").textContent = output.join("\n");
+        }
+    </script>
+
+</body>
+
+</html>

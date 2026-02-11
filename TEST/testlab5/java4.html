@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>String Demo</title>
+</head>
+
+<body>
+
+    <pre id="output">ผลลัพธ์จะแสดงที่นี่..</pre>
+    <button onclick="runStringDemo()">Run Code</button>
+
+    <script>
+        function runStringDemo() {
+            console.clear();
+
+            const out = [];
+            let text = "JavaScript เจ๋งมาก";
+            let firstName = "สมชาย";
+
+            out.push(`สวัสดี ${firstName}!`);
+            console.log(`สวัสดี ${firstName}!`);
+
+            out.push("ความยาว: " + text.length);
+            console.log("ความยาว:", text.length);
+
+            out.push("ตัวใหญ่: " + text.toUpperCase());
+            console.log("ตัวใหญ่:", text.toUpperCase());
+
+            out.push("ตัวเล็ก: " + text.toLowerCase());
+            console.log("ตัวเล็ก:", text.toLowerCase());
+
+            out.push('มี "Java"? ' + text.includes("Java"));
+            console.log('มี "Java"?', text.includes("Java"));
+
+            out.push('ตำแหน่ง "Script": ' + text.indexOf("Script"));
+            console.log('ตำแหน่ง "Script":', text.indexOf("Script"));
+
+            out.push("ตัดค่า (0-4): " + text.slice(0, 4));
+            console.log("ตัดค่า (0-4):", text.slice(0, 4));
+
+            out.push("แทนที่: " + text.replace("เจ๋ง", "สุดยอด"));
+            console.log("แทนที่:", text.replace("เจ๋ง", "สุดยอด"));
+
+            document.getElementById("output").textContent = out.join("\n");
+
+            out.forEach(line => console.log("> " + line));
+        }
+    </script>
+
+</body>
+
+</html>
