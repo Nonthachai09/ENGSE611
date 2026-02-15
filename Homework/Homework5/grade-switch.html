@@ -2,11 +2,11 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>Grade Check</title>
+    <title>Grade Switch</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
             color: white;
             text-align: center;
             padding: 50px;
@@ -17,7 +17,7 @@
             color: black;
             padding: 20px;
             border-radius: 10px;
-            width: 300px;
+            width: 320px;
             margin: auto;
         }
 
@@ -29,7 +29,7 @@
 
         button {
             padding: 8px 15px;
-            background: #2a5298;
+            background: #2c5364;
             color: white;
             border: none;
             border-radius: 5px;
@@ -37,20 +37,24 @@
         }
 
         button:hover {
-            background: #1e3c72;
+            background: #203a43;
+        }
+
+        #outputBox {
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
-    <h2>ระบบตรวจสอบเกรด</h2>
+    <h2>การตรวจสอบเกรด (Switch Statement)</h2>
 
     <div class="card">
         <input type="number" id="scoreInput" placeholder="กรอกคะแนน (0-100)">
         <br>
         <button onclick="checkGrade()">ตรวจสอบ</button>
 
-        <div id="output" style="margin-top:15px;"></div>
+        <div id="outputBox"></div>
     </div>
 
     <script>
@@ -63,7 +67,6 @@
             }
 
             let grade;
-            let result;
 
             if (score >= 80) {
                 grade = "A";
@@ -77,22 +80,42 @@
                 grade = "F";
             }
 
-            if (score >= 50) {
-                result = "ผ่าน";
-            } else {
-                result = "ไม่ผ่าน";
+            let description;
+
+            switch (grade) {
+                case "A":
+                    description = "ยอดเยี่ยมมาก";
+                    break;
+                case "B":
+                    description = "ดีมาก รักษามาตรฐานไว้";
+                    break;
+                case "C":
+                    description = "ผ่านเกณฑ์ระดับดี";
+                    break;
+                case "D":
+                    description = "พอใช้ แต่ควรพัฒนาเพิ่ม";
+                    break;
+                case "F":
+                    description = "ต้องอ่านหนังสือเพิ่ม";
+                    break;
+                default:
+                    description = "ไม่พบข้อมูล";
             }
 
-            let outputText =
+            let result = (score >= 50) ? "ผ่าน" : "ไม่ผ่าน";
+
+            let output =
                 "คะแนน: " + score + "<br>" +
                 "เกรด: " + grade + "<br>" +
-                "ผลสอบ: " + result;
+                "ผลสอบ: " + result + "<br>" +
+                "คำอธิบาย: " + description;
 
-            document.getElementById("output").innerHTML = outputText;
+            document.getElementById("outputBox").innerHTML = output;
 
             console.log("คะแนน:", score);
             console.log("เกรด:", grade);
             console.log("ผลสอบ:", result);
+            console.log("คำอธิบาย:", description);
         }
     </script>
 
