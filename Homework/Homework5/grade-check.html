@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grade Check</title>
+</head>
+<body>
+
+    <h2>ตรวจสอบเกรด</h2>
+    <div id="output"></div>
+
+    <script>
+        let score = 88; 
+
+        let grade;
+        let result;
+
+        if (score >= 80) {
+            grade = "A";
+        } else if (score >= 70) {
+            grade = "B";
+        } else if (score >= 60) {
+            grade = "C";
+        } else if (score >= 50) {
+            grade = "D";
+        } else {
+            grade = "F";
+        }
+
+        if (score >= 50) {
+            result = "ผ่าน";
+        } else {
+            result = "ไม่ผ่าน";
+        }
+
+        let outputText = 
+            "คะแนน: " + score + "<br>" +
+            "เกรด: " + grade + "<br>" +
+            "ผลสอบ: " + result;
+
+        document.getElementById("output").innerHTML = outputText;
+
+        console.log("คะแนน:", score);
+        console.log("เกรด:", grade);
+        console.log("ผลสอบ:", result);
+    </script>
+
+</body>
+</html>
