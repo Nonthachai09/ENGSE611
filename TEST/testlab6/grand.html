@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 40px auto;
+        }
+
+        input,
+        button {
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        #outputBox {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>โปรแกรมคำนวณเกรด</h2>
+
+    <label>คะแนน (0 - 100):</label><br>
+    <input type="number" id="scoreInput" placeholder="0 - 100" min="0" max="100">
+    <br>
+    <button onclick="runGrade()">คำนวณเกรด</button>
+
+    <div id="outputBox">ผลลัพธ์จะแสดงที่นี่...</div>
+
+    <script>
+        function calculateGrade(score) {
+            if (score >= 80) {
+                return "A";
+            } else if (score >= 70) {
+                return "B";
+            } else if (score >= 60) {
+                return "C";
+            } else if (score >= 50) {
+                return "D";
+            } else {
+                return "F";
+            }
+        }
+
+        function runGrade() {
+            console.clear();
+
+            const output = [];
+
+            let score = Number(document.getElementById("scoreInput").value);
+
+            if (isNaN(score) || score < 0 || score > 100) {
+                output.push("กรุณากรอกคะแนนระหว่าง 0 - 100 เท่านั้น");
+                document.getElementById("outputBox").textContent = output.join("\n");
+                console.log("Invalid input");
+                return;
+            }
+
+            let grade = calculateGrade(score);
+
+            output.push("คะแนน: " + score);
+            output.push("เกรดที่ได้: " + grade);
+
+            document.getElementById("outputBox").textContent = output.join("\n");
+
+            console.log("คะแนน:", score);
+            console.log("เกรด:", grade);
+        }
+    </script>
+
+</body>
+
+</html>

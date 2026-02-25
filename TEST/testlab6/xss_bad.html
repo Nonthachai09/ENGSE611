@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <title>XSS DEMO – เว็บนี้ไม่ปลอดภัย</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      padding: 20px 40px;
+    }
+
+    h1 {
+      color: #b00020;
+      /* เริ่มต้นเป็นโหมดไม่ปลอดภัย */
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+      background: #fafafa;
+    }
+
+    #outputBox {
+      min-height: 60px;
+    }
+
+    #stolen {
+      border: 2px solid #f44336;
+      background: #ffecec;
+      padding: 10px;
+      min-height: 40px;
+      font-weight: bold;
+    }
+
+    #safeCookie {
+      border: 2px solid #4caf50;
+      background: #e8f5e9;
+      padding: 10px;
+      min-height: 40px;
+      font-weight: bold;
+    }
+
+    .label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      max-width: 600px;
+      padding: 6px 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 6px 14px;
+      margin-left: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    ul {
+      margin-top: 0;
+    }
+
+    .mode-box {
+      margin: 10px 0 20px;
+      padding: 8px 10px;
+      border-left: 4px solid #ccc;
+      background: #f9f9f9;
+      font-size: 0.95rem;
+    }
+
+    .mode-box label {
+      margin-right: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- หัวข้อหลัก: จะสลับข้อความ / สีตามโหมด -->
+  <h1 id="pageTitle">❌ XSS DEMO – เว็บนี้ไม่ปลอดภัย</h1>
+
+  <div class="mode-box">
+    <strong>เลือกโหมดการสาธิต:</strong>
+    <label>
+      <input type="radio" name="mode" value="unsafe" checked>
+      ไม่ปลอดภัย (ใช้ <code>innerHTML</code>)
+    </label>
+    <label>
+      <input type="radio" name="mode" value="safe">
+      ปลอดภัย (ใช้ <code>textContent</code>)
+    </label>
+  </div>
+
+  <p id="modeDesc">
+    ตัวอย่างนี้จงใจเขียนโค้ดให้ <strong>ไม่ปลอดภัย</strong> โดยนำข้อมูลจากผู้ใช้ไปใส่ใน
+    <code>innerHTML</code> ตรง ๆ เพื่อดูผลของ XSS ได้ชัดเจน
+  </p>
+
+  <p>
+    หมายเหตุ: เมื่อเปิดไฟล์แบบ <code>file://</code> บนเครื่อง
+    เบราว์เซอร์มักจะไม่เก็บ <code>document.cookie</code><br>
+    ในเดโมนี้จึงใช้ตัวแปร <code>fakeCookie</code> จำลองค่า cookie แทน
+  </p>
+
+  <p><strong>ตัวอย่าง payload ที่ทดลอง:</strong></p>
+  <ul>
+    <li>
+      ขโมย cookie แล้วเอามาแสดงในกล่องล่าง:<br>
+      <code>&lt;img src=x onerror="document.getElementById('stolen').textContent = fakeCookie"&gt;</code>
+    </li>
+    <li>
+      หรือแค่ popup:<br>
+      <code>&lt;img src=x onerror="alert(fakeCookie)"&gt;</code>
+    </li>
+  </ul>
+
+  <label class="label">
+    ข้อความที่ระบบจะเอาไปใส่ใน
+    <code>innerHTML</code> / <code>textContent</code>
+    (ตามโหมดที่เลือก):
+  </label>
+  <input id="userInput" type="text" value="">
+  <button id="btnRender">รันโค้ด</button>
+
+  <div class="box" id="outputBox">
+    <strong>พื้นที่เสี่ยง (output จากโค้ด DOM):</strong>
+    <div id="output">(ยังไม่มีข้อมูล)</div>
+  </div>
+
+  <!-- กล่องนี้แสดงค่า cookie "ของระบบ" ก่อนถูกขโมย -->
+  <h2>✅ Cookie ในระบบ (แสดงอย่างปลอดภัยด้วย textContent):</h2>
+  <div id="safeCookie">(กำลังโหลด cookie ...)</div>
+
+  <!-- กล่องนี้จะถูก payload ไปเขียนค่าเพื่อจำลอง "ข้อมูลถูกขโมย" -->
+  <h2>🔓 ข้อมูลที่ถูกขโมย (Cookie):</h2>
+  <div id="stolen">(รอการขโมย...)</div>
+
+  <script>
+    // จำลองค่า cookie (ในระบบจริง attacker จะใช้ document.cookie)
+    window.fakeCookie = "session_id=ABC123; user=student01; role=normal";
+
+    const input = document.getElementById('userInput');
+    const output = document.getElementById('output');
+    const button = document.getElementById('btnRender');
+    const safeCookie = document.getElementById('safeCookie');
+    const pageTitle = document.getElementById('pageTitle');
+    const modeDesc = document.getElementById('modeDesc');
+    const modeRadios = document.querySelectorAll('input[name="mode"]');
+
+    // แสดง "cookie ในระบบ" อย่างปลอดภัยด้วย textContent
+    safeCookie.textContent = fakeCookie;
+
+    function getCurrentMode() {
+      const checked = document.querySelector('input[name="mode"]:checked');
+      return checked ? checked.value : 'unsafe';
+    }
+
+    function updateModeUI() {
+      const mode = getCurrentMode();
+      if (mode === 'unsafe') {
+        pageTitle.textContent = "❌ XSS DEMO – เว็บนี้ไม่ปลอดภัย";
+        pageTitle.style.color = "#b00020";
+        modeDesc.innerHTML = `
+          ตัวอย่างนี้จงใจเขียนโค้ดให้ <strong>ไม่ปลอดภัย</strong> 
+          โดยนำข้อมูลจากผู้ใช้ไปใส่ใน <code>innerHTML</code> ตรง ๆ 
+          เพื่อให้นักศึกษาดูผลของ XSS ได้ชัดเจน
+        `;
+      } else {
+        pageTitle.textContent = "✅ XSS DEMO – เว็บนี้ปลอดภัย";
+        pageTitle.style.color = "#1b5e20";
+        modeDesc.innerHTML = `
+          ตัวอย่างนี้เป็นโค้ดแบบ <strong>ปลอดภัย</strong> 
+          โดยนำข้อมูลจากผู้ใช้ไปใส่ใน <code>textContent</code> 
+          ทำให้สคริปต์ที่ผู้ใช้ป้อนเข้ามาไม่ถูกประมวลผล (ไม่เกิด XSS)
+        `;
+      }
+
+      // ล้าง output / กล่องถูกขโมย เวลาเปลี่ยนโหมดให้ดูเคลียร์ ๆ
+      output.textContent = "(ยังไม่มีข้อมูล)";
+      document.getElementById('stolen').textContent = "(รอการขโมย...)";
+    }
+
+    // เปลี่ยนโหมดเมื่อคลิก radio
+    modeRadios.forEach(r => {
+      r.addEventListener('change', updateModeUI);
+    });
+
+    // ปุ่ม "รันโค้ด"
+    button.addEventListener('click', function () {
+      const mode = getCurrentMode();
+      const value = input.value;
+
+      if (mode === 'unsafe') {
+        // ❌ โค้ดที่ "ไม่ปลอดภัย" — นำข้อมูลจากผู้ใช้มาใส่ใน innerHTML ตรง ๆ
+        output.innerHTML = value;
+      } else {
+        // ✅ โค้ดแบบปลอดภัย — ใช้ textContent แทน
+        output.textContent = value;
+      }
+    });
+
+    // เรียกครั้งแรกให้ UI ตรงกับโหมดเริ่มต้น
+    updateModeUI();
+  </script>
+</body>
+
+</html>
