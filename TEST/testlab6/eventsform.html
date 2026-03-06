@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Username Validation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            background: #e3f2fd;
+        }
+
+        .message {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>สมัครสมาชิก</h2>
+
+        <input type="text" id="username" placeholder="Username (ต้องมี 3+ ตัวอักษร)">
+
+        <div id="message" class="message"></div>
+
+    </div>
+
+    <script>
+
+        let username = document.getElementById('username');
+        let message = document.getElementById('message');
+
+        username.addEventListener('blur', function () {
+
+            if (this.value.length < 3) {
+                this.style.borderColor = "red";
+                message.textContent = "Username ต้องมีอย่างน้อย 3 ตัวอักษร";
+                message.style.color = "red";
+            }
+            else {
+                this.style.borderColor = "green";
+                message.textContent = "Username ถูกต้อง";
+                message.style.color = "green";
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
